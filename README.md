@@ -11,7 +11,8 @@ Practise one algorithm one day.
 * [Quick Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/quicksort)
 * [Bubble Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/bubblesort)
 * [Insertion Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/insertionsort)
+* [Shell Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/shellsort)
 * [Heap Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/heapsort)
-* [Merge Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/mergesort)]
+* [Merge Sort](https://github.com/ThreeBearsDan/Algorithm/tree/master/mergesort)
 
 
