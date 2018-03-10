@@ -1,4 +1,6 @@
-# Algorithm
+Algorithm 
+[![Circle CI](https://circleci.com/gh/ThreeBearsDan/Algorithm.svg?style=shield)](https://circleci.com/gh/ThreeBearsDan/Algorithm)
+-----------------------
 Practise one algorithm one day.
 
 ## 基本概念
