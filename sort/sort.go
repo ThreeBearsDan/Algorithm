@@ -115,6 +115,27 @@ func QuickSort(list []int) []int {
 	return list
 }
 
+// in-place的快速排序
+func QuickSort2(s []int) {
+	if len(s) < 2 {
+		return
+	}
+
+	idx := 0
+	for i, j := 1, len(s)-1; i <= j; idx = i {
+		if s[i-1] >= s[i] {
+			s[i-1], s[i] = s[i], s[i-1]
+			i++
+		} else {
+			s[i], s[j] = s[j], s[i]
+			j--
+		}
+	}
+
+	QuickSort2(s[:idx-1])
+	QuickSort2(s[idx:])
+}
+
 // 希尔排序
 func ShellSort(list []int) {
 	n := len(list)

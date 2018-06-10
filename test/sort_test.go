@@ -3,62 +3,68 @@ package test
 import (
 	"testing"
 
+	"reflect"
+
 	"github.com/ThreeBearsDan/Algorithm/sort"
-	"github.com/stretchr/testify/assert"
 )
 
-var sortlist = []int{1, 2, 3, 3, 3, 4, 6, 7, 10, 12}
+func Testsortinplace(name string, f func([]int), t *testing.T) {
+	tests := []struct{ seq, want []int }{
+		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
+		{[]int{3, 2, 1, 10, 9, 6, 5, 7, 4, 8}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
+		{[]int{2, 2, 1, 5, 4, 2, 2, 6, 2, 9, 10}, []int{1, 2, 2, 2, 2, 2, 4, 5, 6, 9, 10}},
+	}
+
+	for _, v := range tests {
+		f(v.seq)
+		if !reflect.DeepEqual(v.seq, v.want) {
+			t.Errorf("sort name: %s, want: %v, got: %v", name, v.want, v.seq)
+		}
+	}
+}
+
+func Testsortnonplace(name string, f func([]int) []int, t *testing.T) {
+	tests := []struct{ seq, want []int }{
+		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
+		{[]int{3, 2, 1, 10, 9, 6, 5, 7, 4, 8}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
+		{[]int{2, 2, 1, 5, 4, 2, 2, 6, 2, 9, 10}, []int{1, 2, 2, 2, 2, 2, 4, 5, 6, 9, 10}},
+	}
+
+	for _, v := range tests {
+		if !reflect.DeepEqual(f(v.seq), v.want) {
+			t.Errorf("sort name: %s, want: %v, got: %v", name, v.want, f(v.seq))
+		}
+	}
+}
 
 func TestBubbleSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	sort.BubbleSort(unsortlist)
-	if ok := assert.Equal(t, sortlist, unsortlist); ok != true {
-		t.Error("test bubble sort failed")
-	}
+	Testsortinplace("bubble sort", sort.BubbleSort, t)
 }
 
 func TestHeapSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	sort.HeapSort(unsortlist)
-	if ok := assert.Equal(t, sortlist, unsortlist); ok != true {
-		t.Error("test heap sort failed")
-	}
+	Testsortinplace("heap sort", sort.HeapSort, t)
 }
 
 func TestInsertionSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	sort.InsertionSort(unsortlist)
-	if ok := assert.Equal(t, sortlist, unsortlist); ok != true {
-		t.Error("test insertion sort failed")
-	}
+	Testsortinplace("insertion sort", sort.InsertionSort, t)
 }
 
 func TestMergeSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	if ok := assert.Equal(t, sortlist, sort.MergeSort(unsortlist)); ok != true {
-		t.Error("test merge sort failed")
-	}
+	Testsortnonplace("merge sort", sort.MergeSort, t)
 }
 
 func TestQuickSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	if ok := assert.Equal(t, sortlist, sort.QuickSort(unsortlist)); ok != true {
-		t.Error("test quick sort failed")
-	}
+	Testsortnonplace("quick sort with extra space", sort.QuickSort, t)
+}
+
+func TestQuickSort2(t *testing.T) {
+	Testsortinplace("quick sort in place", sort.QuickSort2, t)
 }
 
 func TestShellSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	sort.ShellSort(unsortlist)
-	if ok := assert.Equal(t, sortlist, unsortlist); ok != true {
-		t.Error("test shell sort failed")
-	}
+	Testsortinplace("shell sort", sort.ShellSort, t)
 }
 
 func TestSelectSort(t *testing.T) {
-	unsortlist := []int{2, 3, 4, 1, 10, 6, 7, 3, 3, 12}
-	sort.SelectSort(unsortlist)
-	if ok := assert.Equal(t, sortlist, unsortlist); ok != true {
-		t.Error("test select sort failed")
-	}
+	Testsortinplace("select sort", sort.SelectSort, t)
 }
