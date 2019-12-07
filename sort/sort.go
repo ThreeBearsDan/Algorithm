@@ -115,7 +115,7 @@ func QuickSort(s []int) []int {
 }
 
 // Quick sort in place
-func QuickSort2(s []int) {
+func QuickSortInplace(s []int) {
 	if len(s) < 2 {
 		return
 	}
@@ -131,8 +131,8 @@ func QuickSort2(s []int) {
 		}
 	}
 
-	QuickSort2(s[:i])
-	QuickSort2(s[i+1:])
+	QuickSortInplace(s[:i])
+	QuickSortInplace(s[i+1:])
 }
 
 // 希尔排序

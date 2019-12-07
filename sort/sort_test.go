@@ -31,7 +31,7 @@ func TestQuickSort(t *testing.T) {
 		}
 
 		data := v.data
-		QuickSort2(data)
+		QuickSortInplace(data)
 		if !reflect.DeepEqual(data, v.want) {
 			t.Errorf("got [%v] want [%v]", got, v.want)
 		}
