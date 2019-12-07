@@ -58,7 +58,7 @@ func TestQuickSort(t *testing.T) {
 }
 
 func TestQuickSort2(t *testing.T) {
-	Testsortinplace("quick sort in place", sort.QuickSort2, t)
+	Testsortinplace("quick sort in place", sort.QuickSortInplace, t)
 }
 
 func TestShellSort(t *testing.T) {
