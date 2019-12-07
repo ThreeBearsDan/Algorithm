@@ -56,42 +56,43 @@ func InsertionSort(list []int) {
 		for j := i; j > 0; j-- {
 			if list[j] < list[j-1] {
 				list[j], list[j-1] = list[j-1], list[j]
+			} else {
+				break
 			}
 		}
 	}
 }
 
-// 归并排序
-func MergeSort(list []int) []int {
-	n := len(list)
-	if n < 2 {
-		return list
+// Merge sort
+func MergeSort(s []int) []int {
+	length := len(s)
+	if length < 2 {
+		return s
 	}
 
-	mid := n / 2
+	ls := MergeSort(s[:length/2])
+	rs := MergeSort(s[length/2:])
 
-	llist := MergeSort(list[:mid])
-	rlist := MergeSort(list[mid:])
-
-	return merge(llist, rlist)
+	return merge(ls, rs)
 }
 
 func merge(a []int, b []int) []int {
-	temp := make([]int, 0)
+	result := make([]int, 0, len(a)+len(b))
+
 	i, j := 0, 0
 	for i < len(a) && j < len(b) {
 		if a[i] < b[j] {
-			temp = append(temp, a[i])
+			result = append(result, a[i])
 			i++
 		} else {
-			temp = append(temp, b[j])
+			result = append(result, b[j])
 			j++
 		}
 	}
-	temp = append(temp, a[i:]...)
-	temp = append(temp, b[j:]...)
+	result = append(result, a[i:]...)
+	result = append(result, b[j:]...)
 
-	return temp
+	return result
 }
 
 // Quick sort by allocating more space

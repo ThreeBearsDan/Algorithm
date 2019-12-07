@@ -57,7 +57,7 @@ func TestQuickSort(t *testing.T) {
 	Testsortnonplace("quick sort with extra space", sort.QuickSort, t)
 }
 
-func TestQuickSort2(t *testing.T) {
+func TestQuickSortInplace(t *testing.T) {
 	Testsortinplace("quick sort in place", sort.QuickSortInplace, t)
 }
 
