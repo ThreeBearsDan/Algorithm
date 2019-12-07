@@ -11,43 +11,24 @@ func BubbleSort(list []int) {
 	}
 }
 
-// 堆排序
-func HeapSort(list []int) {
-	// 构建最大堆
-	l := len(list)
-	m := l / 2
-	for i := m; i > -1; i-- {
-		heap(list, i, l-1)
-	}
-
-	// 交换根尾节点并删除根节点
-	for i := l - 1; i > 0; i-- {
-		list[i], list[0] = list[0], list[i]
-		heap(list, 0, i-1)
-	}
-
-}
-
-func heap(list []int, i, end int) {
-	// 左节点
-	ln := 2*i + 1
-	if ln > end {
+// Heap Sort
+func HeapSort(s []int) {
+	if len(s) < 2 {
 		return
 	}
-	n := ln
 
-	// 右节点
-	rn := 2*i + 2
-	if rn <= end && list[rn] > list[n] {
-		n = rn
+	heap(s)
+	HeapSort(s[:len(s)-1])
+}
+
+func heap(s []int) {
+	for i := len(s) - 1; i > 0; i-- {
+		if s[(i-1)/2] < s[i] {
+			s[(i-1)/2], s[i] = s[i], s[(i-1)/2]
+		}
 	}
 
-	// 调整根节点
-	if list[i] < list[n] {
-		list[i], list[n] = list[n], list[i]
-	}
-	// 对所有节点进行调整
-	heap(list, n, end)
+	s[0], s[len(s)-1] = s[len(s)-1], s[0]
 }
 
 // 插入排序
