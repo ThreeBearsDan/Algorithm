@@ -94,46 +94,45 @@ func merge(a []int, b []int) []int {
 	return temp
 }
 
-// 快速排序
-func QuickSort(list []int) []int {
-	if len(list) > 1 {
-		rlist := make([]int, 0)
-		llist := make([]int, 0)
-		key := make([]int, 0)
-		key = append(key, list[0])
-		for i := 1; i < len(list); i++ {
-			if list[i] < key[0] {
-				llist = append(llist, list[i])
-			} else if list[i] > key[0] {
-				rlist = append(rlist, list[i])
-			} else {
-				key = append(key, list[i])
-			}
-		}
-		return append(QuickSort(llist), append(key, QuickSort(rlist)...)...)
+// Quick sort by allocating more space
+func QuickSort(s []int) []int {
+	if len(s) < 2 {
+		return s
 	}
-	return list
+
+	ls := make([]int, 0)
+	rs := make([]int, 0)
+
+	for i := 1; i < len(s); i++ {
+		if s[0] > s[i] {
+			ls = append(ls, s[i])
+		} else {
+			rs = append(rs, s[i])
+		}
+	}
+
+	return append(append(QuickSort(ls), s[0]), QuickSort(rs)...)
 }
 
-// in-place的快速排序
+// Quick sort in place
 func QuickSort2(s []int) {
 	if len(s) < 2 {
 		return
 	}
 
-	idx := 0
-	for i, j := 1, len(s)-1; i <= j; idx = i {
-		if s[i-1] >= s[i] {
-			s[i-1], s[i] = s[i], s[i-1]
+	i, j := 0, len(s)-1
+	for i < j {
+		if s[i] > s[i+1] {
+			s[i], s[i+1] = s[i+1], s[i]
 			i++
 		} else {
-			s[i], s[j] = s[j], s[i]
+			s[j], s[i+1] = s[i+1], s[j]
 			j--
 		}
 	}
 
-	QuickSort2(s[:idx-1])
-	QuickSort2(s[idx:])
+	QuickSort2(s[:i])
+	QuickSort2(s[i+1:])
 }
 
 // 希尔排序
