@@ -153,14 +153,22 @@ func ShellSort(list []int) {
 	}
 }
 
-// 选择排序
-func SelectSort(list []int) {
-	n := len(list)
-	for i := 0; i < n; i++ {
-		for j := i + 1; j < n; j++ {
-			if list[i] > list[j] {
-				list[i], list[j] = list[j], list[i]
+// Select sort
+func SelectSort(s []int) {
+	if len(s) < 2 {
+		return
+	}
+
+	for i := 0; i < len(s); i++ {
+		idx := i
+		min := s[i]
+		for j := i + 1; j < len(s); j++ {
+			if min > s[j] {
+				idx = j
+				min = s[j]
 			}
 		}
+
+		s[i], s[idx] = s[idx], s[i]
 	}
 }
