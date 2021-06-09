@@ -18,6 +18,7 @@ import (
 )
 
 func main() {
+	nodeNum := flag.Int("node", 31, "-node")
 	random := flag.Bool("rand", false, "-rand")
 	flag.Parse()
 
@@ -27,7 +28,7 @@ func main() {
 	signal.Notify(ch, os.Interrupt, os.Kill)
 
 	var j int
-	for i := 0; i < 31; i++ {
+	for i := 0; i < *nodeNum; i++ {
 		if *random {
 			j = rand.Intn(100)
 		} else {
