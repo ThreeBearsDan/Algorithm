@@ -158,7 +158,7 @@ h = O(lg(n))
 
 仅有一个节点，写入新节点
    
-  ![img_20.png](./static/mg_20.png)
+  ![img_20.png](./static/img_20.png)
 
 写入到2-节点
 
