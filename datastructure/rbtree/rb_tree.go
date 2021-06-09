@@ -50,44 +50,44 @@ func (node *TreeNode) compare(key string) int {
 	return 0
 }
 
-func rotateLeft(n *TreeNode) *TreeNode {
-	if !n.right.isRed() {
-		return n
+func rotateLeft(h *TreeNode) *TreeNode {
+	if !h.right.isRed() {
+		return h
 	}
 
-	x := n.right
-	n.right = x.left
-	x.left = n
-	x.color = n.color
-	n.color = Red
+	x := h.right
+	h.right = x.left
+	x.left = h
+	x.color = h.color
+	h.color = Red
 	return x
 }
 
-func rotateRight(n *TreeNode) *TreeNode {
-	if !n.left.isRed() {
-		return n
+func rotateRight(h *TreeNode) *TreeNode {
+	if !h.left.isRed() {
+		return h
 	}
 
-	x := n.left
-	n.left = x.right
-	x.right = n
-	x.color = n.color
-	n.color = Red
+	x := h.left
+	h.left = x.right
+	x.right = h
+	x.color = h.color
+	h.color = Red
 	return x
 }
 
-func flipColors(n *TreeNode) {
-	if !n.right.isRed() {
+func flipColors(h *TreeNode) {
+	if !h.right.isRed() {
 		return
 	}
 
-	if !n.left.isRed() {
+	if !h.left.isRed() {
 		return
 	}
 
-	n.left.color = Black
-	n.right.color = Black
-	n.color = Red
+	h.left.color = Black
+	h.right.color = Black
+	h.color = Red
 	Root.color = Black
 }
 
